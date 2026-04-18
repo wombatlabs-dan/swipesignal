@@ -53,7 +53,7 @@ function LandingPage() {
           surface what's actually worth referencing. You swipe through. We write the email.
         </p>
 
-        <form onSubmit={handleSubmit} action="/research" method="get" className="mt-12">
+        <form onSubmit={handleSubmit} className="mt-12">
           <label htmlFor="company" className="ss-label mb-3 block">
             Target company
           </label>

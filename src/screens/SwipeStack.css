@@ -1,0 +1,93 @@
+.swipe-stack-screen {
+  display: flex;
+  min-height: 100vh;
+}
+
+.swipe-stack__main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.swipe-stack__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.swipe-stack__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.swipe-stack__meta-value {
+  font-family: var(--font-serif);
+  font-size: var(--size-meta-value);
+  color: var(--color-ink);
+}
+
+.swipe-stack__keyboard-hints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-2);
+}
+
+.swipe-stack__hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 13px;
+  color: var(--color-ink-muted);
+}
+
+.swipe-stack__key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background: var(--color-surface);
+}
+
+.swipe-stack__buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.swipe-stack__action-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: 18px;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: all var(--duration-button) var(--ease-out);
+}
+
+.swipe-stack__action-button:hover {
+  border-color: var(--color-ink);
+}
+
+.swipe-stack__action-button:active {
+  transform: scale(0.94);
+}
+
+@media (max-width: 767px) {
+  .swipe-stack__keyboard-hints {
+    display: none;
+  }
+}

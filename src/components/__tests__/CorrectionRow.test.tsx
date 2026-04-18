@@ -38,7 +38,8 @@ describe('CorrectionRow', () => {
     render(<CorrectionRow onSave={vi.fn()} onSkip={onSkip} />)
 
     vi.advanceTimersByTime(6000)
-    await waitFor(() => expect(onSkip).toHaveBeenCalled())
+
+    expect(onSkip).toHaveBeenCalled()
 
     vi.useRealTimers()
   })

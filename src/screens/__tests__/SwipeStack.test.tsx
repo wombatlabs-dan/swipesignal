@@ -13,8 +13,8 @@ describe('SwipeStack', () => {
 
   it('renders keyboard hints in sidebar', () => {
     render(<SwipeStack />, { wrapper: BrowserRouter })
-    expect(screen.getByText(/→ Good signal/i)).toBeInTheDocument()
-    expect(screen.getByText(/← Worth a second look/i)).toBeInTheDocument()
+    expect(screen.getByText('Good signal')).toBeInTheDocument()
+    expect(screen.getByText('Worth a second look')).toBeInTheDocument()
   })
 
   it('renders approve and flag buttons', () => {

@@ -1,0 +1,27 @@
+.corner-mark {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.corner-mark__dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+.corner-mark__text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+  .corner-mark__text {
+    font-size: 11px;
+  }
+}

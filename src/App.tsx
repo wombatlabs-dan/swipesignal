@@ -1,19 +1,16 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-
-function Landing() {
-  return <div>Landing Screen</div>
-}
+import Landing from './screens/Landing'
 
 function Loading() {
-  return <div>Loading Screen</div>
+  return <div>Loading</div>
 }
 
 function SwipeStack() {
-  return <div>Swipe Stack Screen</div>
+  return <div>Swipe</div>
 }
 
 function EmailOutput() {
-  return <div>Email Output Screen</div>
+  return <div>Email</div>
 }
 
 function App() {

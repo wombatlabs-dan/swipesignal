@@ -32,7 +32,9 @@ export function EmailScreen({
 
   function copy() {
     const subject = "Your SDR hiring spree meets your onboarding reality";
-    const body = `Saw the six new Forward-Deployed Engineers you're hiring in NYC — congrats on the enterprise push.
+    const body = `Hey there, Anjali —
+
+Saw the six new Forward-Deployed Engineers you're hiring in NYC — congrats on the enterprise push.
 
 One thing stood out when I cross-referenced it: your G2 reviews keep landing on the same note — setup takes two to four weeks even for experienced ops teams. You're scaling outbound faster than your product lets new customers operate it, right at the moment PLG is the board-level thesis. That's a design problem, not a hiring one.
 
@@ -87,6 +89,7 @@ Dan Harrison · WombatLabs · fractional design for AI startups`;
               lineHeight: 1.6,
             }}
           >
+            <p style={{ marginBottom: "16px" }}>Hey there, Anjali —</p>
             <p style={{ marginBottom: "16px" }}>
               Saw the six new Forward-Deployed Engineers you're hiring in NYC — congrats
               on the enterprise push.

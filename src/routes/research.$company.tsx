@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { researchCompany } from "@/server/research.functions";
 import { generateEmail, type GeneratedEmail } from "@/server/email.functions";
@@ -55,40 +55,57 @@ function ResearchPage() {
   const [loadingMinElapsed, setLoadingMinElapsed] = useState(false);
   const [researchReady, setResearchReady] = useState(false);
 
-  // Kick off the live research immediately, but hold the loading screen for its
-  // full sequenced duration so it never feels fake.
+  // StrictMode-safe single-fire guard for kicking off research + the loading timer.
+  const startedRef = useRef(false);
+
   useEffect(() => {
-    let cancelled = false;
+    if (startedRef.current) return;
+    startedRef.current = true;
+
     console.log("[research] kicking off server fn for", company);
+    let resolvedPayload: ResearchPayload | null = null;
+    let minElapsed = false;
+
+    const tryAdvance = () => {
+      console.log("[advance-check]", { hasPayload: !!resolvedPayload, minElapsed });
+      if (resolvedPayload && minElapsed) {
+        console.log("[phase] → swiping");
+        setPayload(resolvedPayload);
+        setPhase("swiping");
+      }
+    };
+
     research({ data: { company } })
       .then((r) => {
-        if (!cancelled) {
-          console.log("[research] payload received", { insights: r?.insights?.length });
-          setPayload(r);
-          setResearchReady(true);
-        }
+        console.log("[research] payload received", { insights: r?.insights?.length });
+        resolvedPayload = r;
+        tryAdvance();
       })
       .catch((err) => {
         console.error("[research] server fn failed", err);
-        if (!cancelled) setResearchReady(true);
+        // Use a minimal fallback so UI can still proceed
+        resolvedPayload = {
+          company,
+          domain: "",
+          summary: `Research preview for ${company}.`,
+          insights: [],
+          emailSeed: { subject: `On ${company}`, angle: "" },
+          cached: true,
+        };
+        tryAdvance();
       });
-    return () => {
-      cancelled = true;
+
+    // Trigger from the loading component sequence
+    (window as unknown as { __ssMinElapsed: () => void }).__ssMinElapsed = () => {
+      console.log("[loading-min-elapsed] fired");
+      minElapsed = true;
+      tryAdvance();
     };
   }, [company, research]);
 
-  // Advance from loading → swiping once both: research arrived + min sequence done
-  useEffect(() => {
-    console.log("[phase-check]", { phase, loadingMinElapsed, researchReady, hasPayload: !!payload });
-    if (phase === "loading" && loadingMinElapsed && researchReady && payload) {
-      console.log("[phase] → swiping");
-      setPhase("swiping");
-    }
-  }, [phase, loadingMinElapsed, researchReady, payload]);
-
   const handleLoadingMinElapsed = useCallback(() => {
-    console.log("[loading-min-elapsed] fired");
-    setLoadingMinElapsed(true);
+    const fn = (window as unknown as { __ssMinElapsed?: () => void }).__ssMinElapsed;
+    if (fn) fn();
   }, []);
 
   async function handleSwipeComplete(allDecisions: Decision[]) {

@@ -1,9 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Landing from './screens/Landing'
-
-function Loading() {
-  return <div>Loading</div>
-}
+import Loading from './screens/Loading'
 
 function SwipeStack() {
   return <div>Swipe</div>

@@ -6,7 +6,8 @@
 
 **[→ Try it live at swipesignal.lovable.app](https://swipesignal.lovable.app)**
 
----
+---<img width="741" height="683" alt="Screenshot 2026-04-18 at 2 42 56 PM" src="https://github.com/user-attachments/assets/7fd5ec75-c21e-4f92-b601-90ae0f1714fd" />
+
 
 ## What it does
 

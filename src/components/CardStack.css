@@ -1,0 +1,34 @@
+.card-stack {
+  position: relative;
+  width: 360px;
+  height: 420px;
+}
+
+.card-stack__peek {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  transform: scale(0.96);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-stack__current {
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-card-exit) var(--ease-out),
+              opacity var(--duration-card-exit) var(--ease-out);
+}
+
+.card-stack__current--exiting {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .card-stack {
+    width: 100%;
+    max-width: 360px;
+  }
+}

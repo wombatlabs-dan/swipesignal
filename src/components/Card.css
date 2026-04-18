@@ -1,0 +1,115 @@
+.card {
+  position: relative;
+  width: 360px;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 250ms var(--ease-out);
+}
+
+.card--dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+}
+
+.card__source {
+  font-family: var(--font-sans);
+  font-size: var(--size-card-source);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-muted);
+}
+
+.card__insight {
+  font-family: var(--font-sans);
+  font-size: var(--size-card-insight);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-ink);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin: var(--space-3) 0;
+}
+
+.card__confidence {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+}
+
+.card__confidence-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Glow effects */
+.card__glow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  pointer-events: none;
+}
+
+.card__glow--approve {
+  right: -2px;
+  background: var(--color-approve);
+  box-shadow: 0 0 20px var(--color-approve);
+}
+
+.card__glow--flag {
+  left: -2px;
+  background: var(--color-flag);
+  box-shadow: 0 0 20px var(--color-flag);
+}
+
+/* Ghost labels */
+.card__ghost-label {
+  position: absolute;
+  top: 50%;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 24px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.card__ghost-label--approve {
+  right: -140px;
+  transform: translateY(-50%) rotate(-3deg);
+  color: var(--color-approve);
+}
+
+.card__ghost-label--flag {
+  left: -180px;
+  transform: translateY(-50%) rotate(-6deg);
+  color: var(--color-flag);
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: calc(100vw - 64px);
+    max-width: 360px;
+  }
+
+  .card__insight {
+    font-size: 17px;
+  }
+}

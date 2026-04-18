@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { researchCompany } from "@/server/research.functions";
 import { generateEmail, type GeneratedEmail } from "@/server/email.functions";
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/research/$company")({
   },
 });
 
-type Phase = "loading" | "swiping" | "generating" | "email";
+type Phase = "loading" | "swiping" | "generating" | "email" | "error";
 
 function ResearchPage() {
   const { company } = Route.useParams();
@@ -49,62 +49,34 @@ function ResearchPage() {
 
   const [phase, setPhase] = useState<Phase>("loading");
   const [payload, setPayload] = useState<ResearchPayload | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [email, setEmail] = useState<GeneratedEmail | null>(null);
   const [isRegenerating, setIsRegenerating] = useState(false);
 
-  // StrictMode-safe single-fire guard for kicking off research + the loading timer.
+  // StrictMode-safe single-fire guard for kicking off research.
   const startedRef = useRef(false);
 
   useEffect(() => {
     if (startedRef.current) return;
     startedRef.current = true;
 
-    console.log("[research] kicking off server fn for", company);
-    let resolvedPayload: ResearchPayload | null = null;
-    let minElapsed = false;
-
-    const tryAdvance = () => {
-      console.log("[advance-check]", { hasPayload: !!resolvedPayload, minElapsed });
-      if (resolvedPayload && minElapsed) {
-        console.log("[phase] → swiping");
-        setPayload(resolvedPayload);
-        setPhase("swiping");
-      }
-    };
-
+    console.log("[research] kicking off for", company);
     research({ data: { company } })
       .then((r) => {
         console.log("[research] payload received", { insights: r?.insights?.length });
-        resolvedPayload = r;
-        tryAdvance();
+        setPayload(r);
+        setPhase("swiping");
       })
       .catch((err) => {
-        console.error("[research] server fn failed", err);
-        // Use a minimal fallback so UI can still proceed
-        resolvedPayload = {
-          company,
-          domain: "",
-          summary: `Research preview for ${company}.`,
-          insights: [],
-          emailSeed: { subject: `On ${company}`, angle: "" },
-          cached: true,
-        };
-        tryAdvance();
+        console.error("[research] failed", err);
+        setErrorMessage(
+          err?.message ||
+            "Live Apify access is rate-limited during the demo. Try Clay, Attio, or Retool.",
+        );
+        setPhase("error");
       });
-
-    // Trigger from the loading component sequence
-    (window as unknown as { __ssMinElapsed: () => void }).__ssMinElapsed = () => {
-      console.log("[loading-min-elapsed] fired");
-      minElapsed = true;
-      tryAdvance();
-    };
   }, [company, research]);
-
-  const handleLoadingMinElapsed = useCallback(() => {
-    const fn = (window as unknown as { __ssMinElapsed?: () => void }).__ssMinElapsed;
-    if (fn) fn();
-  }, []);
 
   async function handleSwipeComplete(allDecisions: Decision[]) {
     if (!payload) return;

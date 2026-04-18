@@ -9,48 +9,64 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResearchCompanyRouteImport } from './routes/research.$company'
 
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResearchCompanyRoute = ResearchCompanyRouteImport.update({
-  id: '/research/$company',
-  path: '/research/$company',
-  getParentRoute: () => rootRouteImport,
+  id: '/$company',
+  path: '/$company',
+  getParentRoute: () => ResearchRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/research': typeof ResearchRouteWithChildren
   '/research/$company': typeof ResearchCompanyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/research': typeof ResearchRouteWithChildren
   '/research/$company': typeof ResearchCompanyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/research': typeof ResearchRouteWithChildren
   '/research/$company': typeof ResearchCompanyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/research/$company'
+  fullPaths: '/' | '/research' | '/research/$company'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/research/$company'
-  id: '__root__' | '/' | '/research/$company'
+  to: '/' | '/research' | '/research/$company'
+  id: '__root__' | '/' | '/research' | '/research/$company'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ResearchCompanyRoute: typeof ResearchCompanyRoute
+  ResearchRoute: typeof ResearchRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -60,17 +76,29 @@ declare module '@tanstack/react-router' {
     }
     '/research/$company': {
       id: '/research/$company'
-      path: '/research/$company'
+      path: '/$company'
       fullPath: '/research/$company'
       preLoaderRoute: typeof ResearchCompanyRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ResearchRoute
     }
   }
 }
 
+interface ResearchRouteChildren {
+  ResearchCompanyRoute: typeof ResearchCompanyRoute
+}
+
+const ResearchRouteChildren: ResearchRouteChildren = {
+  ResearchCompanyRoute: ResearchCompanyRoute,
+}
+
+const ResearchRouteWithChildren = ResearchRoute._addFileChildren(
+  ResearchRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ResearchCompanyRoute: ResearchCompanyRoute,
+  ResearchRoute: ResearchRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

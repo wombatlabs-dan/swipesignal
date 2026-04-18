@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { listCachedCompanies } from "@/data/cached-research";
 
@@ -18,7 +18,6 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   const navigate = useNavigate();
-  // Pre-populated with "Clay" — fully editable.
   const [company, setCompany] = useState("Clay");
   const cachedExamples = listCachedCompanies();
 
@@ -26,6 +25,7 @@ function LandingPage() {
     e.preventDefault();
     const trimmed = company.trim();
     if (!trimmed) return;
+    console.log("[landing] submitting company", trimmed);
     navigate({ to: "/research/$company", params: { company: trimmed } });
   }
 
@@ -53,13 +53,14 @@ function LandingPage() {
           surface what's actually worth referencing. You swipe through. We write the email.
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-12">
+        <form onSubmit={handleSubmit} action="/research" method="get" className="mt-12">
           <label htmlFor="company" className="ss-label mb-3 block">
             Target company
           </label>
           <div className="relative">
             <input
               id="company"
+              name="company"
               type="text"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
@@ -82,14 +83,15 @@ function LandingPage() {
         <div className="mt-10 flex flex-wrap items-center gap-2">
           <span className="ss-label">Try one</span>
           {cachedExamples.map((c) => (
-            <button
+            <Link
               key={c}
-              type="button"
-              onClick={() => setCompany(c)}
+              to="/research/$company"
+              params={{ company: c }}
+              preload={false}
               className="ss-press rounded-md border border-[var(--ss-border)] bg-surface px-3 py-1.5 text-[12px] font-medium text-ink-muted transition-colors hover:border-[var(--ss-accent)] hover:text-ink"
             >
               {c}
-            </button>
+            </Link>
           ))}
         </div>
       </section>

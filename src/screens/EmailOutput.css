@@ -1,0 +1,110 @@
+.email-screen {
+  display: flex;
+  min-height: 100vh;
+}
+
+.email__main {
+  flex: 1;
+  padding: var(--space-6) 56px 40px;
+  max-width: 1000px;
+}
+
+.email__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.email__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.email__meta-value {
+  font-family: var(--font-serif);
+  font-size: var(--size-meta-value);
+  color: var(--color-ink);
+  margin-top: 4px;
+}
+
+.email__basis {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.email__basis-chip {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.email__basis-mark {
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.email__basis-mark--approved {
+  color: var(--color-approve);
+}
+
+.email__basis-mark--flagged {
+  color: var(--color-flag);
+}
+
+.email__basis-text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.email__subject-block {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-3);
+}
+
+.email__subject {
+  font-family: var(--font-serif);
+  font-size: var(--size-subject);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-ink);
+  margin-top: var(--space-1);
+}
+
+.email__body {
+  max-width: 600px;
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  line-height: 1.65;
+  color: var(--color-ink);
+  white-space: pre-line;
+  margin-bottom: var(--space-3);
+}
+
+.email__highlight {
+  background: rgba(76, 175, 125, 0.14);
+  padding: 0 3px;
+  font-weight: 600;
+}
+
+.email__buttons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+@media (max-width: 767px) {
+  .email__main {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .email__subject {
+    font-size: 24px;
+  }
+}

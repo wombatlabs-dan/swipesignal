@@ -32,7 +32,7 @@ export function ResearchLoadingState({ onComplete }: { onComplete: () => void })
   }, [activeStep, done]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-6">
+    <div className="flex w-full items-center justify-center px-6">
       <div className="ss-shadow-card w-full max-w-[420px] rounded-[20px] border border-[var(--ss-border)] bg-surface p-8">
         <div className="ss-label mb-6">Reading between the lines</div>
 

@@ -5,6 +5,7 @@
   --color-accent: #1F4E5F;
   --color-accent-light: #2a7879;
   --color-accent-dark: #0f3d3e;
+  --color-accent-hover: #2a7879;
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #666666;
   --color-text-tertiary: #999999;
@@ -14,6 +15,8 @@
   --color-success: #2d7a4f;
   --color-error: #c14343;
   --color-warning: #d97706;
+  --color-ink: #1a1a1a;
+  --color-ink-muted: #666666;
 
   /* Typography */
   --font-serif: 'Instrument Serif', Georgia, serif;
@@ -30,6 +33,7 @@
   --font-size-5xl: 3rem;      /* 48px */
 
   --size-eyebrow: 0.6875rem;  /* 11px */
+  --size-button: 1rem;  /* 16px */
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -60,6 +64,7 @@
   --radius-xl: 1rem;      /* 16px */
   --radius-2xl: 1.5rem;   /* 24px */
   --radius-full: 9999px;
+  --radius-button: 0.5rem;  /* 8px */
 
   /* Shadows */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -84,4 +89,8 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Component-specific durations */
+  --duration-button: 250ms;
+  --duration-counter: 250ms;
 }

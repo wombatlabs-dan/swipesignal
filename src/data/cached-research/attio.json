@@ -1,0 +1,39 @@
+{
+  "company": "Attio",
+  "domain": "attio.com",
+  "summary": "Next-gen CRM building toward a fully composable, AI-augmented sales workspace.",
+  "insights": [
+    {
+      "id": "attio-1",
+      "source": "From recent news",
+      "insight": "Closed a $33M Series B led by Redpoint in March — explicitly earmarked for 'AI-native CRM' rather than headcount expansion.",
+      "confidence": "High confidence",
+      "evidence": "TechCrunch · funding announcement"
+    },
+    {
+      "id": "attio-2",
+      "source": "From job postings",
+      "insight": "Hiring three ML engineers in London — first time they've posted ML-specific roles. Building in-house, not buying.",
+      "confidence": "High confidence",
+      "evidence": "LinkedIn Jobs · roles posted in the last 14 days"
+    },
+    {
+      "id": "attio-3",
+      "source": "From G2 reviews",
+      "insight": "Reviewers consistently praise the data model flexibility but flag email sequencing as the weakest module — a clear product gap.",
+      "confidence": "Moderate — verify this",
+      "evidence": "G2 · trend across last 12 reviews"
+    },
+    {
+      "id": "attio-4",
+      "source": "From recent news",
+      "insight": "CEO Nicolas Sharp recently posted about 'agents that act on the CRM, not just observe it' — strong signal on product direction.",
+      "confidence": "High confidence",
+      "evidence": "LinkedIn post · 5 days ago"
+    }
+  ],
+  "emailSeed": {
+    "subject": "On agents that act on the CRM",
+    "angle": "Reference Nicolas's agent-led CRM thesis and the email sequencing gap."
+  }
+}

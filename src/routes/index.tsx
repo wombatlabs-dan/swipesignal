@@ -39,7 +39,7 @@ function LandingPage() {
         <div className="ss-label">Research-first outbound</div>
       </header>
 
-      <section className="mx-auto max-w-2xl px-6 pt-32 pb-16">
+      <section className="mx-auto max-w-2xl px-6 pt-12 pb-24">
         <h1 className="font-display text-[56px] leading-[1.05] text-ink md:text-[64px]">
           Research smarter.
           <br />
@@ -96,7 +96,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <footer className="fixed bottom-6 left-0 right-0 mx-auto max-w-6xl px-8">
+      <footer className="mx-auto max-w-6xl px-8 pb-6">
         <div className="flex items-center justify-between text-[11px] text-ink-muted">
           <span>Powered by Apify · Lovable AI Gateway</span>
           <span>v0.1 · demo</span>

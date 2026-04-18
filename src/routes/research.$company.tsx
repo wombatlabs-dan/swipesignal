@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { researchCompany } from "@/server/research.functions";
 import { generateEmail, type GeneratedEmail } from "@/server/email.functions";
@@ -59,15 +59,17 @@ function ResearchPage() {
   // full sequenced duration so it never feels fake.
   useEffect(() => {
     let cancelled = false;
+    console.log("[research] kicking off server fn for", company);
     research({ data: { company } })
       .then((r) => {
         if (!cancelled) {
+          console.log("[research] payload received", { insights: r?.insights?.length });
           setPayload(r);
           setResearchReady(true);
         }
       })
       .catch((err) => {
-        console.error(err);
+        console.error("[research] server fn failed", err);
         if (!cancelled) setResearchReady(true);
       });
     return () => {
@@ -77,10 +79,17 @@ function ResearchPage() {
 
   // Advance from loading → swiping once both: research arrived + min sequence done
   useEffect(() => {
+    console.log("[phase-check]", { phase, loadingMinElapsed, researchReady, hasPayload: !!payload });
     if (phase === "loading" && loadingMinElapsed && researchReady && payload) {
+      console.log("[phase] → swiping");
       setPhase("swiping");
     }
   }, [phase, loadingMinElapsed, researchReady, payload]);
+
+  const handleLoadingMinElapsed = useCallback(() => {
+    console.log("[loading-min-elapsed] fired");
+    setLoadingMinElapsed(true);
+  }, []);
 
   async function handleSwipeComplete(allDecisions: Decision[]) {
     if (!payload) return;
@@ -172,7 +181,7 @@ function ResearchPage() {
 
       <section className="mx-auto flex w-full max-w-2xl flex-col items-center px-6 pt-16 pb-20">
         {phase === "loading" && (
-          <ResearchLoadingState onComplete={() => setLoadingMinElapsed(true)} />
+          <ResearchLoadingState onComplete={handleLoadingMinElapsed} />
         )}
 
         {phase === "swiping" && payload && (

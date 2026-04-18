@@ -1,0 +1,8 @@
+.eyebrow-label {
+  font-family: var(--font-sans);
+  font-size: var(--size-eyebrow);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+}

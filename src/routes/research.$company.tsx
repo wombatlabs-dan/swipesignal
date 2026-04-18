@@ -167,8 +167,19 @@ function ResearchPage() {
       </header>
 
       <section className="mx-auto flex w-full max-w-2xl flex-col items-center px-6 pt-16 pb-20">
-        {phase === "loading" && (
-          <ResearchLoadingState onComplete={handleLoadingMinElapsed} />
+        {phase === "loading" && <ResearchLoadingState onComplete={() => {}} />}
+
+        {phase === "error" && (
+          <div className="mt-24 max-w-md text-center">
+            <div className="ss-label mb-3 text-[var(--ss-flag)]">Demo limit</div>
+            <p className="text-[17px] leading-relaxed text-ink">{errorMessage}</p>
+            <button
+              onClick={() => navigate({ to: "/" })}
+              className="ss-press mt-8 rounded-[10px] bg-ink px-4 py-2.5 text-[13px] font-semibold text-white"
+            >
+              ← Back to start
+            </button>
+          </div>
         )}
 
         {phase === "swiping" && payload && (

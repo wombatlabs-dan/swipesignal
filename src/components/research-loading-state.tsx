@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const STEPS = [
   "Scanning job postings...",
@@ -12,16 +12,24 @@ export function ResearchLoadingState({ onComplete }: { onComplete: () => void })
   const [activeStep, setActiveStep] = useState(0);
   const [done, setDone] = useState(false);
 
+  // Keep the latest onComplete in a ref so identity changes don't restart timers.
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
   useEffect(() => {
     if (done) return;
     if (activeStep >= STEPS.length) {
+      console.log("[loading] sequence complete, signaling onComplete");
       setDone(true);
-      const t = setTimeout(onComplete, 400);
+      const t = setTimeout(() => onCompleteRef.current(), 400);
       return () => clearTimeout(t);
     }
+    console.log(`[loading] step ${activeStep} → ${activeStep + 1} in ${STEP_DURATION}ms`);
     const t = setTimeout(() => setActiveStep((s) => s + 1), STEP_DURATION);
     return () => clearTimeout(t);
-  }, [activeStep, done, onComplete]);
+  }, [activeStep, done]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">

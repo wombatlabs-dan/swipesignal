@@ -52,8 +52,6 @@ function ResearchPage() {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [email, setEmail] = useState<GeneratedEmail | null>(null);
   const [isRegenerating, setIsRegenerating] = useState(false);
-  const [loadingMinElapsed, setLoadingMinElapsed] = useState(false);
-  const [researchReady, setResearchReady] = useState(false);
 
   // StrictMode-safe single-fire guard for kicking off research + the loading timer.
   const startedRef = useRef(false);

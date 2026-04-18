@@ -1,22 +1,28 @@
-import { Link, createFileRoute, redirect } from "@tanstack/react-router";
+import { Link, Outlet, createFileRoute, redirect, useLocation } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/research")({
   validateSearch: (search: Record<string, unknown>) => ({
     company: typeof search.company === "string" ? search.company : "",
   }),
-  beforeLoad: ({ search }) => {
+  beforeLoad: ({ search, location }) => {
     const trimmed = search.company.trim();
-    if (trimmed) {
+    if (location.pathname === "/research" && trimmed) {
       throw redirect({
         to: "/research/$company",
         params: { company: trimmed },
       });
     }
   },
-  component: ResearchRedirectPage,
+  component: ResearchRouteShell,
 });
 
-function ResearchRedirectPage() {
+function ResearchRouteShell() {
+  const location = useLocation();
+
+  if (location.pathname !== "/research") {
+    return <Outlet />;
+  }
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="max-w-md text-center">

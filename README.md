@@ -2,7 +2,7 @@
 
 > **Research-first outbound, with a human in the loop.** Tinder for prospect intelligence — and it gets smarter every time you swipe.
 
-**Submission** — [Marketing Agents Hackathon](https://lu.ma/) · The AI Collective × Lynk · Entrepreneurs First, San Francisco · April 19, 2026
+**Submission** — [Marketing Agents Hackathon]([https://lu.ma/](https://luma.com/dqvdp45m?tk=cTctTx)) · The AI Collective × Lynk · Entrepreneurs First, San Francisco · April 19, 2026
 
 **[→ Try it live at swipesignal.lovable.app](https://swipesignal.lovable.app)**
 

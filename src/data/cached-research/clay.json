@@ -1,0 +1,39 @@
+{
+  "company": "Clay",
+  "domain": "clay.com",
+  "summary": "Sales-data enrichment platform scaling rapidly through AI-native workflows.",
+  "insights": [
+    {
+      "id": "clay-1",
+      "source": "From job postings",
+      "insight": "Clay is hiring 6 forward-deployed engineers in NYC — they're investing heavily in white-glove onboarding for enterprise accounts.",
+      "confidence": "High confidence",
+      "evidence": "LinkedIn Jobs · 6 active reqs posted in the last 21 days"
+    },
+    {
+      "id": "clay-2",
+      "source": "From recent news",
+      "insight": "Just shipped a Claude integration for their AI agents — they're betting on multi-model orchestration, not just OpenAI.",
+      "confidence": "High confidence",
+      "evidence": "Clay changelog · published 8 days ago"
+    },
+    {
+      "id": "clay-3",
+      "source": "From G2 reviews",
+      "insight": "Top complaint in recent reviews: credit consumption is unpredictable on large enrichment runs. Pricing transparency is a sore spot.",
+      "confidence": "Moderate — verify this",
+      "evidence": "G2 · 4 reviews mentioning 'credits' in the last 30 days"
+    },
+    {
+      "id": "clay-4",
+      "source": "From job postings",
+      "insight": "Two open roles for 'AI Solutions Architect' explicitly mention building custom agents on top of Clay — they're positioning as a platform, not a tool.",
+      "confidence": "High confidence",
+      "evidence": "Clay careers page · roles updated this week"
+    }
+  ],
+  "emailSeed": {
+    "subject": "Forward-deployed at Clay — a thought on enterprise rollout",
+    "angle": "Reference the FDE hiring spree and the credit-transparency pain point."
+  }
+}

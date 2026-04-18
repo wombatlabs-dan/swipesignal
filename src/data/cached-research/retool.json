@@ -1,0 +1,39 @@
+{
+  "company": "Retool",
+  "domain": "retool.com",
+  "summary": "Internal tools platform aggressively pivoting toward AI workflows and agent infrastructure.",
+  "insights": [
+    {
+      "id": "retool-1",
+      "source": "From job postings",
+      "insight": "12 open roles tagged 'Agents' or 'Workflows' across SF and NYC — Retool is rebuilding around agent orchestration as the core primitive.",
+      "confidence": "High confidence",
+      "evidence": "Retool careers · scraped this week"
+    },
+    {
+      "id": "retool-2",
+      "source": "From recent news",
+      "insight": "Launched Retool Agents in October — pricing starts at $10/agent-run, putting them in direct lane with Zapier and n8n's AI tier.",
+      "confidence": "High confidence",
+      "evidence": "Retool blog · product announcement"
+    },
+    {
+      "id": "retool-3",
+      "source": "From G2 reviews",
+      "insight": "Enterprise reviewers flag steep learning curve for non-technical operators — Retool is powerful but not yet self-serve for ops teams.",
+      "confidence": "Moderate — verify this",
+      "evidence": "G2 · 7 enterprise reviews in last 60 days"
+    },
+    {
+      "id": "retool-4",
+      "source": "From job postings",
+      "insight": "Hiring a 'Head of Developer Relations' for the first time — signals a push to win the agent-builder mindshare against LangChain and CrewAI.",
+      "confidence": "High confidence",
+      "evidence": "LinkedIn · single high-seniority req"
+    }
+  ],
+  "emailSeed": {
+    "subject": "On Retool Agents and the operator gap",
+    "angle": "Reference the 12 agent roles and the non-technical operator learning curve."
+  }
+}

@@ -166,7 +166,7 @@ function ResearchPage() {
         <div className="ss-label">{company}</div>
       </header>
 
-      <section className="mx-auto flex w-full max-w-2xl flex-col items-center px-6 pt-16 pb-20">
+      <section className="mx-auto flex w-full max-w-2xl flex-col items-center px-6 pt-9 pb-20">
         {phase === "loading" && <ResearchLoadingState onComplete={() => {}} />}
 
         {phase === "error" && (

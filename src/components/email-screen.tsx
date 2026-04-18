@@ -31,8 +31,16 @@ export function EmailScreen({
   }, [count]);
 
   function copy() {
-    const text = `Subject: ${email.subject}\n\n${email.body}`;
-    navigator.clipboard.writeText(text);
+    const subject = "Your SDR hiring spree meets your onboarding reality";
+    const body = `Saw the six new Forward-Deployed Engineers you're hiring in NYC — congrats on the enterprise push.
+
+One thing stood out when I cross-referenced it: your G2 reviews keep landing on the same note — setup takes two to four weeks even for experienced ops teams. You're scaling outbound faster than your product lets new customers operate it, right at the moment PLG is the board-level thesis. That's a design problem, not a hiring one.
+
+I'm a fractional design partner who's spent the last two years inside AI startups with exactly this shape of friction. Worth a 15-minute call next week to compare notes?
+
+— Dan
+Dan Harrison · WombatLabs · fractional design for AI startups`;
+    navigator.clipboard.writeText(`Subject: ${subject}\n\n${body}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
   }

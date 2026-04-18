@@ -31,8 +31,16 @@ export function EmailScreen({
   }, [count]);
 
   function copy() {
-    const text = `Subject: ${email.subject}\n\n${email.body}`;
-    navigator.clipboard.writeText(text);
+    const subject = "Your SDR hiring spree meets your onboarding reality";
+    const body = `Saw the six new Forward-Deployed Engineers you're hiring in NYC — congrats on the enterprise push.
+
+One thing stood out when I cross-referenced it: your G2 reviews keep landing on the same note — setup takes two to four weeks even for experienced ops teams. You're scaling outbound faster than your product lets new customers operate it, right at the moment PLG is the board-level thesis. That's a design problem, not a hiring one.
+
+I'm a fractional design partner who's spent the last two years inside AI startups with exactly this shape of friction. Worth a 15-minute call next week to compare notes?
+
+— Dan
+Dan Harrison · WombatLabs · fractional design for AI startups`;
+    navigator.clipboard.writeText(`Subject: ${subject}\n\n${body}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
   }
@@ -56,15 +64,49 @@ export function EmailScreen({
             <span className="text-ink-muted">From</span>
             <span className="text-ink">dan@swipesignal.app</span>
             <span className="text-ink-muted">To</span>
-            <span className="text-ink">{`team@${company.toLowerCase().replace(/\s+/g, "")}.com`}</span>
+            <span className="text-ink">
+              Anjali Rao, VP of Product{" "}
+              <span className="text-ink-muted">
+                &lt;anjali.rao@{company.toLowerCase().replace(/\s+/g, "")}.com&gt;
+              </span>
+            </span>
             <span className="text-ink-muted">Subject</span>
-            <span className="font-medium text-ink">{email.subject}</span>
+            <span className="font-medium text-ink">
+              Your SDR hiring spree meets your onboarding reality
+            </span>
           </div>
         </div>
 
         <div className="px-6 py-6">
-          <div className="whitespace-pre-wrap text-[15px] leading-[1.65] text-ink">
-            {email.body}
+          <div
+            className="text-ink"
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 400,
+              fontSize: "15px",
+              lineHeight: 1.6,
+            }}
+          >
+            <p style={{ marginBottom: "16px" }}>
+              Saw the six new Forward-Deployed Engineers you're hiring in NYC — congrats
+              on the enterprise push.
+            </p>
+            <p style={{ marginBottom: "16px" }}>
+              One thing stood out when I cross-referenced it: your G2 reviews keep landing
+              on the same note — setup takes two to four weeks even for experienced ops
+              teams. You're scaling outbound faster than your product lets new customers
+              operate it, right at the moment PLG is the board-level thesis. That's a
+              design problem, not a hiring one.
+            </p>
+            <p style={{ marginBottom: "16px" }}>
+              I'm a fractional design partner who's spent the last two years inside AI
+              startups with exactly this shape of friction. Worth a 15-minute call next
+              week to compare notes?
+            </p>
+            <p style={{ marginBottom: "4px" }}>— Dan</p>
+            <p className="text-ink-muted" style={{ fontSize: "13px", marginTop: "8px" }}>
+              Dan Harrison · WombatLabs · fractional design for AI startups
+            </p>
           </div>
         </div>
       </div>

@@ -1,0 +1,88 @@
+.correction-row {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-button);
+  padding: 14px;
+  animation: slide-in var(--duration-correction) var(--ease-out);
+  max-width: 360px;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.correction-row__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-flag);
+  margin-bottom: var(--space-1);
+}
+
+.correction-row__input {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-ink);
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--color-flag);
+  padding: var(--space-1) 0;
+  background: transparent;
+  margin-bottom: var(--space-2);
+}
+
+.correction-row__input::placeholder {
+  color: var(--color-ink-muted);
+  font-style: italic;
+}
+
+.correction-row__input:focus {
+  outline: none;
+  border-bottom-color: var(--color-flag);
+}
+
+.correction-row__buttons {
+  display: flex;
+  gap: var(--space-1);
+  justify-content: flex-end;
+}
+
+.correction-row__button {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--duration-button) var(--ease-out);
+}
+
+.correction-row__button--skip {
+  background: transparent;
+  color: var(--color-ink-muted);
+  border: none;
+}
+
+.correction-row__button--skip:hover {
+  color: var(--color-ink);
+}
+
+.correction-row__button--save {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+}
+
+.correction-row__button--save:hover {
+  background: var(--color-accent-hover);
+}

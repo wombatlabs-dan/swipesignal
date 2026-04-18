@@ -43,7 +43,7 @@ export default function SwipeStack() {
     setShowCorrectionRow(true)
   }
 
-  const handleCorrectionSave = (text: string) => {
+  const handleCorrectionSave = (_text: string) => {
     increment()
     triggerCounterAnimation()
     setShowCorrectionRow(false)
@@ -82,7 +82,7 @@ export default function SwipeStack() {
   const progress = `${String(currentIndex + 1).padStart(2, '0')} / ${String(clayCards.length).padStart(2, '0')}`
 
   return (
-    <div className="swipe-stack-screen">
+    <div className="swipe-stack-screen page-transition">
       <Sidebar
         footer={
           <LearnedCounter count={count} animating={counterAnimating} />

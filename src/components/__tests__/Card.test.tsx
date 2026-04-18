@@ -25,7 +25,7 @@ describe('Card', () => {
   })
 
   it('applies amber dot for moderate confidence', () => {
-    const moderateCard = { ...mockCard, confidence: 'Moderate — verify this' as const }
+    const moderateCard = { ...mockCard, confidence: 'Moderate - verify this' as const }
     const { container } = render(<Card card={moderateCard} />)
     const dot = container.querySelector('.card__confidence-dot')
     expect(dot).toHaveStyle({ background: 'var(--color-flag)' })

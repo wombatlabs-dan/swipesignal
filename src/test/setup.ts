@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import { beforeEach, afterEach } from 'vitest'
 import '../styles/tokens.css'
 
 // Inject CSS directly into the document for testing

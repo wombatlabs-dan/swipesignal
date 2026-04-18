@@ -23,7 +23,7 @@ export default function Loading() {
   ]
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = []
+    const timers: ReturnType<typeof setTimeout>[] = []
     let elapsed = 0
 
     steps.forEach((step, index) => {
@@ -46,7 +46,7 @@ export default function Loading() {
   }, [navigate])
 
   return (
-    <div className="loading">
+    <div className="loading page-transition">
       <Sidebar
         footer={
           <EyebrowLabel>powered by apify</EyebrowLabel>

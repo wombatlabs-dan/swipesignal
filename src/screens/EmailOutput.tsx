@@ -49,7 +49,7 @@ export default function EmailOutput() {
   }
 
   return (
-    <div className="email-screen">
+    <div className="email-screen page-transition">
       <Sidebar
         footer={
           <LearnedCounter count={learnedCount} />

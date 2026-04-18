@@ -15,7 +15,7 @@ export default function Landing() {
   }
 
   return (
-    <div className="landing">
+    <div className="landing page-transition">
       <div className="landing__corner">
         <CornerMark />
       </div>

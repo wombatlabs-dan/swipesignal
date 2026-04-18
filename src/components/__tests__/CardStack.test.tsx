@@ -14,7 +14,7 @@ const mockCards: CardData[] = [
     id: 2,
     source: 'FROM G2 REVIEWS',
     insight: 'Second card',
-    confidence: 'Moderate — verify this',
+    confidence: 'Moderate - verify this',
   },
 ]
 

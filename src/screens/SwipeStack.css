@@ -87,6 +87,14 @@
 }
 
 @media (max-width: 767px) {
+  .swipe-stack-screen {
+    flex-direction: column;
+  }
+
+  .swipe-stack__main {
+    padding: var(--space-4);
+  }
+
   .swipe-stack__keyboard-hints {
     display: none;
   }

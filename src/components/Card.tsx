@@ -34,6 +34,7 @@ export default function Card({
       className={`card ${isDragging ? 'card--dragging' : ''}`}
       style={{
         transform: `translateX(${x}px) rotate(${tilt}deg)`,
+        transition: isDragging ? 'none' : 'transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

@@ -126,15 +126,15 @@ export default function SwipeStack() {
             <div className="swipe-stack__buttons">
               <button
                 className="swipe-stack__action-button"
-                onClick={() => handleApprove(clayCards[currentIndex].id)}
-              >
-                ✓
-              </button>
-              <button
-                className="swipe-stack__action-button"
                 onClick={() => handleFlag(clayCards[currentIndex].id)}
               >
                 ✗
+              </button>
+              <button
+                className="swipe-stack__action-button"
+                onClick={() => handleApprove(clayCards[currentIndex].id)}
+              >
+                ✓
               </button>
             </div>
           )}

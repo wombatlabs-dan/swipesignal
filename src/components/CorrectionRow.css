@@ -4,7 +4,8 @@
   border-radius: var(--radius-button);
   padding: 14px;
   animation: slide-in var(--duration-correction) var(--ease-out);
-  max-width: 360px;
+  width: 100%;
+  max-width: 520px;
 }
 
 @keyframes slide-in {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Card from './Card'
 import useDrag from '../hooks/useDrag'
 import { CardData } from '../data/clayCards'
@@ -35,6 +35,22 @@ export default function CardStack({
     },
   })
 
+  const triggerExit = useCallback((direction: 'left' | 'right') => {
+    if (isExiting) return
+    setExitDirection(direction)
+    setIsExiting(true)
+  }, [isExiting])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (e.key === 'ArrowRight') triggerExit('right')
+      else if (e.key === 'ArrowLeft') triggerExit('left')
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [triggerExit])
+
   useEffect(() => {
     if (isExiting) {
       const timer = setTimeout(() => {
@@ -57,8 +73,8 @@ export default function CardStack({
   return (
     <div className="card-stack">
       {/* Next card peek */}
-      {nextCard && !isExiting && (
-        <div className="card-stack__peek">
+      {nextCard && (
+        <div className={`card-stack__peek ${isExiting ? 'card-stack__peek--revealing' : ''}`}>
           <Card card={nextCard} />
         </div>
       )}
@@ -77,7 +93,7 @@ export default function CardStack({
           x={x}
           tilt={tilt}
           glowOpacity={glowOpacity}
-          isDragging={isDragging}
+          isDragging={isDragging || isExiting}
           {...handlers}
         />
       </div>

@@ -8,12 +8,10 @@
   cursor: grab;
   user-select: none;
   touch-action: none;
-  transition: transform 250ms var(--ease-out);
 }
 
 .card--dragging {
   cursor: grabbing;
-  transition: none;
 }
 
 .card__content {
@@ -105,8 +103,8 @@
 
 @media (max-width: 767px) {
   .card {
-    width: calc(100vw - 64px);
-    max-width: 360px;
+    width: 100%;
+    max-width: 340px;
   }
 
   .card__insight {
